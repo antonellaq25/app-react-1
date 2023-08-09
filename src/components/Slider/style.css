@@ -1,0 +1,8 @@
+.carrousel-custom{
+    display:flex;
+    justify-content: center;
+}
+
+.carousel-inner {
+    width: 70% !important;
+}
