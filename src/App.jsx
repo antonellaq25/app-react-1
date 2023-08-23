@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css'
 
+
 const router = createBrowserRouter([
   {
       path:'/cities', element:<Cities />

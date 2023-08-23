@@ -23,31 +23,29 @@ export function Slider() {
     { src: "paris.jpeg", city: 'Paris', country: 'France' }]
   ]
   return (
-    <Container>
-      <Carousel data-bs-theme="dark" className="carrousel-custom">
-        {
-          carrouselItems.map((items) => {
-            return <Carousel.Item >
-              <Row xs={1} md={2} lg={2}>
-                {items.map((item) => {
-                  return <Col key={item.city}>
-                    <Card style={{ width: '25rem' }}>
-                      <Card.Img variant="top" src={item.src} />
-                      <Card.Body>
-                        <Card.Title>{item.city}</Card.Title>
-                        <Card.Text>
-                          {item.country}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                })}
+    <Carousel data-bs-theme="dark" className="carrousel-custom">
+      {
+        carrouselItems.map((items) => {
+          return <Carousel.Item >
+            <Row >
+              {items.map((item) => {
+                return <Col key={item.city} lg={6}>
+                  <Card >
+                    <Card.Img variant="top" src={item.src} />
+                    <Card.Body>
+                      <Card.Title>{item.city}</Card.Title>
+                      <Card.Text>
+                        {item.country}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              })}
 
-              </Row>
-            </Carousel.Item>
-          }
-          )}
-      </Carousel>
-    </Container>
+            </Row>
+          </Carousel.Item>
+        }
+        )}
+    </Carousel>
   )
 }
