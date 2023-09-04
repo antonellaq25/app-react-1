@@ -8,7 +8,8 @@ import * as Icon from 'react-bootstrap-icons';
 export function NavHome() {
   let data = [
     { href: '/', text: 'Home' },
-    { href: '/cities', text: 'Cities' }
+    { href: '/cities', text: 'Cities' },
+   
   ]
 
   return (

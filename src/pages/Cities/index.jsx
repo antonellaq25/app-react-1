@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -7,31 +8,29 @@ import { Container } from 'react-bootstrap';
 import './style.css'
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
+import { setCityData, setFilter } from '../../store/actions';
 
-
-
+import { useSelector, useDispatch } from 'react-redux'
 
 export function Cities() {
-    const [data, setData] = useState([]);
-    const [filter, setFilter] = useState('');
-    const  backendURL=  import.meta.env.VITE_REACT_APP_BACKEND_CITIES_ENDPOINT
-
-
+    const data = useSelector(state => state.cityData);
+    const filter = useSelector(state => state.filter);
+    const backendURL = import.meta.env.VITE_REACT_APP_BACKEND_CITIES_ENDPOINT;
+    const dispatch = useDispatch();
+    
     useEffect(() => {
         fetchData();
     }, []);
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(backendURL);
-            setData(response.data);
+          const response = await axios.get(backendURL);
+          dispatch(setCityData(response.data));
         } catch (error) {
-            console.error('Error fetching data:', error);
+          console.error('Error fetching data:', error);
         }
-    };
+      };
 
-
-    console.log(data);
     const filteredCities = data.filter(city => {
         const regex = new RegExp(`\\b${filter}`, 'i');
         return regex.test(city.name);
@@ -42,6 +41,7 @@ export function Cities() {
             <h1>List of cities</h1>
 
             <br />
+
             <Row  >
                 <Col xs={12} md={12} lg={12}>
                     <InputGroup size="lg">
@@ -53,7 +53,7 @@ export function Cities() {
                             type="text"
                             placeholder="Search by city name"
                             value={filter}
-                            onChange={e => setFilter(e.target.value)}
+                            onChange={e => dispatch(setFilter(e.target.value))}
                         />
                     </InputGroup>
                 </Col>
@@ -70,7 +70,10 @@ export function Cities() {
                                 <Card.Text>
                                     {item.country}
                                 </Card.Text>
+
+                                <Card.Link href={`/citydetails/${item.name}`} >View More</Card.Link>
                             </Card.Body>
+                            
                         </Card>
                     </Col>
                 })}
