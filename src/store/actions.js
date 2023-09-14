@@ -12,3 +12,8 @@ export const setItinerariesData = (data) => ({
     type: 'SET_ITINERARIES_DATA',
     payload: data,
 });
+
+export const setUserLogged = (data) => ({
+    type: 'SET_USER_LOGGED',
+    payload: data,
+});

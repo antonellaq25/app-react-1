@@ -4,13 +4,25 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import * as Icon from 'react-bootstrap-icons';
+import { useSelector } from 'react-redux'
+
 
 export function NavHome() {
   let data = [
     { href: '/', text: 'Home' },
     { href: '/cities', text: 'Cities' },
-   
+
   ]
+  const userLogged = useSelector(state => state.userLogged);
+
+  const printLogingButtons = () => {
+    if (userLogged) {
+      return <Button variant="danger" href={'/home/login'}><Icon.Person />Exit</Button>
+     
+    } else {
+      return <Button variant="primary" href={'/home/login'}><Icon.Person />Login</Button>
+    }
+  };
 
   return (
 
@@ -27,9 +39,7 @@ export function NavHome() {
                 return <Nav.Link href={link.href}>{link.text}</Nav.Link>
               })
             }
-
-            <Button variant="primary"><Icon.Person />Login</Button>
-
+            {printLogingButtons()}
 
           </Nav>
         </Navbar.Collapse>

@@ -1,6 +1,3 @@
-import { useState } from 'react'
-
-
 import {NavHome } from './components/NavHome';
 import {Home } from './components/Home';
 import { Footer } from './components/Footer';
@@ -8,9 +5,10 @@ import { Cities } from './pages/Cities';
 import  CityDetails  from './pages/CityDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
 import './App.css'
 import UnderConstruction from './components/UnderConstruction';
+import { LogIn } from './components/LogIn';
+import SignUp from './components/SignUp'
 
 
 const router = createBrowserRouter([
@@ -28,6 +26,14 @@ const router = createBrowserRouter([
     {
       path: '/city/:cityName', 
       element: <UnderConstruction />
+    },
+    {
+      path:'/home/login',
+      element: <LogIn/>
+    },
+    {
+      path:'/signup',
+      element: <SignUp />
     }
     
 ])

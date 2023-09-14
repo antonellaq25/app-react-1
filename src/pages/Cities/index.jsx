@@ -9,8 +9,8 @@ import './style.css'
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import { setCityData, setFilter } from '../../store/actions';
-
 import { useSelector, useDispatch } from 'react-redux'
+
 
 export function Cities() {
     const data = useSelector(state => state.cityData);

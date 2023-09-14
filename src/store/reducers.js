@@ -3,6 +3,7 @@ const initialState = {
     cityData: [],
     itineraries: [],
     filter: '',
+    userLogged: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,9 +23,15 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 itineraries: action.payload,
             };
+        case 'SET_USER_LOGGED':
+            return {
+                ...state,
+                userLogged: action.payload,
+            };
         default:
             return state;
-    }
+    };
+
 };
 
 export default rootReducer;
